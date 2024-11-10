@@ -15,7 +15,7 @@ const initialData: userState = {
     user: null
 }
 
-const fetchLogin = createAsyncThunk('user/login',
+export const fetchLogin = createAsyncThunk('user/login',
     async (user: { userName: string, password: string }, thunkApi) => {
         try {
             const res = await fetch('http://localhost:3333/api/users/login', {
@@ -36,7 +36,7 @@ const fetchLogin = createAsyncThunk('user/login',
     }
 )
 
-const fetchRegister = createAsyncThunk('user/register',
+export const fetchRegister = createAsyncThunk('user/register',
     async (user: { userName: string, password: string, isAdmin: boolean }, thunkApi) => {
         try {
             const res = await fetch('http://localhost:3333/api/users/register', {
@@ -80,3 +80,5 @@ const userSlice = createSlice({
             })
     }
 })
+
+export default userSlice
