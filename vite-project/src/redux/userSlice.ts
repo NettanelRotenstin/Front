@@ -36,26 +36,7 @@ export const fetchLogin = createAsyncThunk('user/login',
     }
 )
 
-export const fetchRegister = createAsyncThunk('user/register',
-    async (user: { userName: string, password: string, isAdmin: boolean }, thunkApi) => {
-        try {
-            const res = await fetch('http://localhost:3333/api/users/register', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "Application/Json"
-                },
-                body: JSON.stringify(user)
-            })
-            if (!res.ok) {
-                thunkApi.rejectWithValue("cant register")
-            }
-            const data = await res.json()
-            thunkApi.fulfillWithValue(data)
-        } catch (error) {
-            thunkApi.rejectWithValue("")
-        }
-    }
-)
+
 
 
 const userSlice = createSlice({
