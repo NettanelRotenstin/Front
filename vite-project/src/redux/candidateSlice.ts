@@ -10,17 +10,19 @@ const initialData: candidateState = {
     candidate: []
 }
 
-export const fetchCandidates = createAsyncThunk('candidates/',
+export const fetchCandidates = createAsyncThunk('candidates/getList',
     async (_, thunkApi) => {
         try {
-            const res = await fetch('http://localhost:3333/api/candidates/')
+            const res = await fetch('http://localhost:3333/api/candidates/',{
+                headers:{"authorization":localStorage.token}
+            })
             if (!res.ok) {
                 thunkApi.rejectWithValue("cant canditates")
             }
             const data = await res.json()
-            thunkApi.fulfillWithValue(data)
+            return data
         } catch (error) {
-            thunkApi.rejectWithValue("")
+            thunkApi.rejectWithValue("cant get the list")
         }
     }
 )
