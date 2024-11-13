@@ -12,11 +12,11 @@ import { useAppDispatch } from './redux/store'
 
 export default function App() {
   const dispatch = useAppDispatch()
-  useEffect(()=>{
-    socket.on("newVoteAddad",()=>{
+  useEffect(() => {
+    socket.on("newVoteAddad", () => {
       dispatch(fetchCandidates())
     })
-  },[])
+  }, [])
   return (
     <div>
       <Nav />
